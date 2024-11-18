@@ -1,8 +1,8 @@
 // src/user/user.entity.ts
-import { Entity, Column, PrimaryGeneratedColumn } from "@nestjs/typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
-@Entity()
+@Entity('user')
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
