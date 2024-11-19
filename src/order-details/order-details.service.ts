@@ -15,7 +15,7 @@ export class OrderDetailsService {
     const { serviceItemId, customerFirstName, customerLastName, email, contactNumber, doorNumber, street, city, district, pinCode } = createOrderDetailDto;
 
     const orderItems = this.orderDetailRepository.create({
-      service_item_id : serviceItemId,
+      item_id : serviceItemId,
       customer_first_name : customerFirstName,
       customer_last_name : customerLastName,
       email : email,
@@ -30,6 +30,8 @@ export class OrderDetailsService {
 
     const savedItem = await this.orderDetailRepository.save(orderItems);
 
+    console.log(savedItem, 'savedItem')
+
     const result : ApiResponse<OrderDetail> = {
       status : ApiResponseStatus.SUCCESS,
       statuscode : 200,
@@ -41,7 +43,28 @@ export class OrderDetailsService {
 
   async findAll(): Promise <ApiResponse<OrderDetail[]>> {
 
-    let orderItems = await this.orderDetailRepository.find();
+    let orderItems = await this.orderDetailRepository.find({ order : { created_at : 'DESC' } });
+
+    if( orderItems ){
+      let result : ApiResponse<OrderDetail[]> = {
+        status: ApiResponseStatus.SUCCESS,
+        statuscode : 200,
+        data : orderItems
+      }
+      return result;
+    } else{
+      let result : ApiResponse<OrderDetail[]> = {
+        status: ApiResponseStatus.ERROR,
+        statuscode : 400,
+        data : []
+      }
+      return result;
+    }
+  }
+
+  async findOneByServiceItem(id: string) : Promise<ApiResponse<OrderDetail[]>> {
+
+    let orderItems = await this.orderDetailRepository.find({ where : { item_id : id }, order : { created_at : 'DESC' } });
 
     if( orderItems ){
       let result : ApiResponse<OrderDetail[]> = {

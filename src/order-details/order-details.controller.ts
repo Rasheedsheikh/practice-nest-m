@@ -19,12 +19,17 @@ export class OrderDetailsController {
     return this.orderDetailsService.findAll();
   }
 
+  @Post('findOneByServiceItem')
+  findOneByServiceItem(@Body('itemId') id: string) : Promise<ApiResponse<OrderDetail[]>> {
+    return this.orderDetailsService.findOneByServiceItem(id);
+  }
+
   @Post('findOneOrderDetail')
   findOne(@Body('orderId') id: string) : Promise<ApiResponse<OrderDetail>> {
     return this.orderDetailsService.findOne(id);
   }
 
-  @Post(':id')
+  @Post('updateOrderDetails')
   update(@Body() updateOrderDetailDto: UpdateOrderDetailDto) {
     return this.orderDetailsService.update( updateOrderDetailDto);
   }

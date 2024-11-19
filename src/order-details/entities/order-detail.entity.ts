@@ -1,14 +1,14 @@
 import { ServiceItem } from "src/service-items/entities/service-item.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('order-details')
+@Entity('order_details')
 export class OrderDetail {
     @PrimaryGeneratedColumn('uuid')
     order_id : string;
 
     @ManyToOne(() => ServiceItem)
     @JoinColumn({ name : 'item_id' })
-    service_item_id : string;
+    item_id : string;
 
     @Column({ nullable : true })
     customer_first_name : string;
@@ -50,10 +50,10 @@ export class OrderDetail {
     problems : string;
     
     @Column({ nullable : true })
-    date_of_service : Date;
+    date_of_service : string;
     
     @Column({ nullable : true })
-    follow_date : Date;
+    follow_date : string;
     
     @Column({ nullable : true })
     technician : string;
@@ -65,7 +65,7 @@ export class OrderDetail {
     complete_details : string;
     
     @Column({ nullable : true })
-    inspect_date : Date;
+    inspect_date : string;
     
     @Column({ nullable : true })
     spare_value : string;

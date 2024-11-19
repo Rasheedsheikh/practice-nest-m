@@ -19,9 +19,9 @@ export class ServiceItemsController {
     return this.serviceItemsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.serviceItemsService.findOne(+id);
+  @Post('findOneServiceItem')
+  findOne(@Body('itemId') id: string) {
+    return this.serviceItemsService.findOne(id);
   }
 
   @Patch(':id')

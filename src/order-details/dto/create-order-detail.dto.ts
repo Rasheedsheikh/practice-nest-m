@@ -14,12 +14,12 @@ export class CreateOrderDetailDto {
     typeLoad : string;
     brandName : string;
     problems : string;
-    dateOfService : Date;
-    followDate : Date;
+    dateOfService : string;
+    followDate : string;
     technician : string;
     paymentDetails : string;
     completeDetails : string;
-    inspectDate : Date;
+    inspectDate : string;
     spareValue : string;
     totalBill : string;
     inTime : string;

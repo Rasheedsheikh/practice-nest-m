@@ -51,8 +51,23 @@ export class ServiceItemsService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} serviceItem`;
+  async findOne(id: string) {
+    let serviceItems = await this.serviceItemRepository.findOne({ where : { item_id : id } });
+    if( serviceItems ){
+      let result : ApiResponse<ServiceItem> = {
+        status: ApiResponseStatus.SUCCESS,
+        statuscode : 200,
+        data : serviceItems
+      }
+      return result;
+    } else{
+      let result : ApiResponse<ServiceItem> = {
+        status: ApiResponseStatus.ERROR,
+        statuscode : 400,
+        data : []
+      }
+      return result;
+    }
   }
 
   update(id: number, updateServiceItemDto: UpdateServiceItemDto) {
