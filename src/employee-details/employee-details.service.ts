@@ -41,7 +41,7 @@ export class EmployeeDetailsService {
   }
 
   async findAll() : Promise<ApiResponse<EmployeeDetail[]>> {
-    let employeeDetails = await this.employeeDetailRepository.find();
+    let employeeDetails = await this.employeeDetailRepository.find({ order : { created_at : 'DESC' } });
 
     if( employeeDetails ){
       let result : ApiResponse<EmployeeDetail[]> = {
