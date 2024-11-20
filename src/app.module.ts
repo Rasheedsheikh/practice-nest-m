@@ -20,7 +20,7 @@ import { EmployeeDetail } from './employee-details/entities/employee-detail.enti
       username: 'mithratech',
       database: 'mithradb',
       entities: [User, ServiceItem, OrderDetail, EmployeeDetail],
-      synchronize: true,
+      synchronize: false,
     }),
     UserModule,
     ServiceItemsModule,

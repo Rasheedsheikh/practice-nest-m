@@ -11,12 +11,14 @@ export class CreateOrderDetailDto {
     district : string;
     pinCode : string;
     category : string;
+    categoryId : string;
     typeLoad : string;
     brandName : string;
     problems : string;
     dateOfService : string;
     followDate : string;
-    technician : string;
+    technicianId : string;
+    technicianName : string;
     paymentDetails : string;
     completeDetails : string;
     inspectDate : string;

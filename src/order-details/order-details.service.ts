@@ -109,12 +109,14 @@ export class OrderDetailsService {
     let orderDetail = await this.orderDetailRepository.findOne({ where : { order_id : updateOrderDetailDto.orderId } });
 
     orderDetail.category = updateOrderDetailDto.category;
+    orderDetail.category_id = updateOrderDetailDto.categoryId;
     orderDetail.type_load = updateOrderDetailDto.typeLoad;
     orderDetail.brand_name = updateOrderDetailDto.brandName;
     orderDetail.problems = updateOrderDetailDto.problems;
     orderDetail.date_of_service = updateOrderDetailDto.dateOfService;
     orderDetail.follow_date = updateOrderDetailDto.followDate;
-    orderDetail.technician = updateOrderDetailDto.technician;
+    orderDetail.technician_id = updateOrderDetailDto.technicianId;
+    orderDetail.technician_name = updateOrderDetailDto.technicianName;
     orderDetail.payment_details = updateOrderDetailDto.paymentDetails;
     orderDetail.complete_details = updateOrderDetailDto.completeDetails;
     orderDetail.inspect_date = updateOrderDetailDto.inspectDate;

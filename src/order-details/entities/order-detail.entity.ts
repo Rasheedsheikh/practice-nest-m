@@ -41,6 +41,9 @@ export class OrderDetail {
     category : string;
     
     @Column({ nullable : true })
+    category_id : string;
+    
+    @Column({ nullable : true })
     type_load : string;
     
     @Column({ nullable : true })
@@ -56,7 +59,10 @@ export class OrderDetail {
     follow_date : string;
     
     @Column({ nullable : true })
-    technician : string;
+    technician_id : string;
+    
+    @Column({ nullable : true })
+    technician_name : string;
     
     @Column({ nullable : true })
     payment_details : string;
