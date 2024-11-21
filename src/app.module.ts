@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServiceItemsModule } from './service-items/service-items.module';
 import { ServiceItem } from './service-items/entities/service-item.entity';
@@ -9,18 +10,25 @@ import { EmployeeDetail } from './employee-details/entities/employee-detail.enti
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres', // or your preferred database
-      host: '3.106.236.250',
-      port: 5432,
-      schema : 'public',
-      password: 'mithra@1234',
-      username: 'mithratech',
-      database: 'mithradb',
-      entities: [ ServiceItem, OrderDetail, EmployeeDetail],
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal: true, // Makes the configuration globally available
+      envFilePath: '.env', // Specify the path to the .env file
     }),
-
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: configService.get<'postgres'>('DB_TYPE'),
+        host: configService.get<string>('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USERNAME'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_DATABASE'),
+        schema: configService.get<string>('DB_SCHEMA'),
+        entities: [ServiceItem, OrderDetail, EmployeeDetail],
+        synchronize: false
+      }),
+    }),
     ServiceItemsModule,
     OrderDetailsModule,
     EmployeeDetailsModule,
