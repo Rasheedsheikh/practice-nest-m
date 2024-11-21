@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './user/user.module';
-import { User } from './user/user.entity';
 import { ServiceItemsModule } from './service-items/service-items.module';
 import { ServiceItem } from './service-items/entities/service-item.entity';
 import { OrderDetailsModule } from './order-details/order-details.module';
@@ -19,10 +17,10 @@ import { EmployeeDetail } from './employee-details/entities/employee-detail.enti
       password: 'mithra@1234',
       username: 'mithratech',
       database: 'mithradb',
-      entities: [User, ServiceItem, OrderDetail, EmployeeDetail],
+      entities: [ ServiceItem, OrderDetail, EmployeeDetail],
       synchronize: true,
     }),
-    UserModule,
+
     ServiceItemsModule,
     OrderDetailsModule,
     EmployeeDetailsModule,
